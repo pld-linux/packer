@@ -40,7 +40,7 @@ boxes.
 
 %build
 # avoid interfering with builder env
-#unset GIT_WORK_TREE GIT_DIR
+unset GIT_WORK_TREE GIT_DIR
 
 export GOPATH=$(pwd)/GOPATH
 export GOBIN=$GOPATH/bin
