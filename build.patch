@@ -1,0 +1,27 @@
+--- packer/scripts/build.sh	2013-09-26 00:24:44.414373468 +0300
++++ /tmp/build.sh	2013-09-26 00:38:58.457386171 +0300
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++set -x
+ #
+ # This script only builds the application from source.
+ set -e
+@@ -17,7 +18,7 @@
+ cd $DIR
+ 
+ # Get the git commit
+-GIT_COMMIT=$(git rev-parse HEAD)
++GIT_COMMIT=$(git rev-parse HEAD || echo ca9426d6e73c2307e0f3d451adecccbe19241a8c)
+ GIT_DIRTY=$(test -n "`git status --porcelain`" && echo "+CHANGES" || true)
+ 
+ # If we're building on Windows, specify an extension
+@@ -36,7 +37,8 @@
+ fi
+ 
+ echo -e "${OK_COLOR}--> Installing dependencies to speed up builds...${NO_COLOR}"
+-go get ./...
++#pwd
++go get ./... || :
+ 
+ # This function waits for all background tasks to complete
+ waitAll() {
